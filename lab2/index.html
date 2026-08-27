@@ -1,23 +1,83 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 2</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Lab 2 - Four-Dimensional Visualization</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
 </head>
 
 <body>
 
-    <h1>Lab 2</h1>
+<header>
+    <h1>STATS 401</h1>
+
+    <p>Data Acquisition and Visualization</p>
+</header>
+
+<nav class="lab-nav">
+
+    <a href="../lab1/index.html">Lab 1</a>
+    <a href="../lab2/index.html">Lab 2</a>
+    <a href="../lab3/index.html">Lab 3</a>
+    <a href="../lab4/index.html">Lab 4</a>
+    <a href="../lab5/index.html">Lab 5</a>
+    <a href="../lab6/index.html">Lab 6</a>
+    <a href="../lab7/index.html">Lab 7</a>
+    <a href="../lab8/index.html">Lab 8</a>
+    <a href="../lab9/index.html">Lab 9</a>
+    <a href="../lab10/index.html">Lab 10</a>
+
+</nav>
+
+<main>
+
+    <h2>Lab 2: Four-Dimensional City Visualization</h2>
 
     <p>
-        Lab 2 will be added here.
+        This visualization represents population, temperature,
+        development level, and region for twelve cities.
     </p>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <div id="chart"></div>
+
+    <div id="tooltip"
+         class="tooltip">
+    </div>
+
+    <section class="design-section">
+
+        <h2>Design Justification</h2>
+
+        <p>
+            I used bar height to represent population because height makes
+            quantitative differences between cities easy to compare.
+            Region is represented with color because it is a nominal variable
+            with four distinct categories: North, South, East, and West.
+            Development level is represented by bar width, with Low shown as
+            narrower bars, Medium as medium-width bars, and High as wider bars.
+            This preserves the ordered nature of the variable. Average
+            temperature is represented by the size of the circle above each
+            bar, so warmer cities have larger circles and cooler cities have
+            smaller circles. City names are shown along the horizontal axis,
+            and tooltips provide the exact values for each observation. I hope
+            viewers can quickly compare population while also noticing
+            regional patterns, development levels, and differences in
+            temperature across the twelve cities.
+        </p>
+
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="lab2.js"></script>
 
 </body>
 
