@@ -1,73 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>STATS 401 Labs</title>
+    <title>Lab 3 - Web Data Acquisition</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .dataset-info {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 650px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        th:hover {
+            background-color: #e2e2e2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f6ff;
+        }
+
+        .sort-note {
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <header>
+        <h1>STATS 401 Labs</h1>
 
-    <nav class="lab-nav">
-        <a href="lab1/index.html">Lab 1</a>
-        <a href="lab2/index.html">Lab 2</a>
-        <a href="lab3/index.html">Lab 3</a>
-        <a href="lab4/index.html">Lab 4</a>
-        <a href="lab5/index.html">Lab 5</a>
-        <a href="lab6/index.html">Lab 6</a>
-        <a href="lab7/index.html">Lab 7</a>
-        <a href="lab8/index.html">Lab 8</a>
-        <a href="lab9/index.html">Lab 9</a>
-        <a href="lab10/index.html">Lab 10</a>
-    </nav>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../lab1/">Lab 1</a>
+            <a href="../lab2/">Lab 2</a>
+            <a href="../lab3/">Lab 3</a>
+            <a href="../lab4/">Lab 4</a>
+            <a href="../lab5/">Lab 5</a>
+            <a href="../lab6/">Lab 6</a>
+            <a href="../lab7/">Lab 7</a>
+            <a href="../lab8/">Lab 8</a>
+            <a href="../lab9/">Lab 9</a>
+            <a href="../lab10/">Lab 10</a>
+        </nav>
+    </header>
 
-    <h2>Lab 1: Getting Started with D3.js</h2>
+    <main>
 
-    <p>This is my first webpage for STATS 401.</p>
+        <h2>Lab 3: Web Data Acquisition</h2>
 
-    <p id="message">Original message</p>
+        <div class="dataset-info">
 
-    <h2 id="title">My Visualization</h2>
+            <p>
+                <strong>Dataset:</strong>
+                Pokémon Records
+            </p>
 
-    <p class="description">
-        Visualization description
-    </p>
+            <p>
+                <strong>Data Source:</strong>
+                PokéAPI
+            </p>
 
-    <div id="content"></div>
+            <p>
+                <strong>Method:</strong>
+                REST API using Python requests
+            </p>
 
-    <div id="numbers"></div>
+            <p>
+                <strong>Records Collected:</strong>
+                1,000
+            </p>
 
-    <svg width="600" height="300">
+            <p>
+                This dataset contains information about 1,000 Pokémon.
+                Each record includes the Pokémon ID, name, height,
+                weight, base experience, and type.
+                The data was collected programmatically using Python
+                and the PokéAPI REST API.
+            </p>
 
-        <circle
-            cx="100"
-            cy="100"
-            r="40"
-            fill="steelblue">
-        </circle>
+        </div>
 
-        <rect
-            x="200"
-            y="60"
-            width="120"
-            height="80"
-            fill="orange">
-        </rect>
+        <p class="sort-note">
+            Click any column heading to sort the table.
+            Click the same heading again to reverse the order.
+        </p>
 
-    </svg>
+        <div class="table-container">
 
-    <div id="svg-demo"></div>
+            <table id="data-table">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-
-    <script src="js/main.js"></script>
+    <script src="lab3.js"></script>
 
 </body>
-
 </html>
