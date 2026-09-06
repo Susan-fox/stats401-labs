@@ -1,24 +1,137 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Lab 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lab 4 - Cleaning Web Data for Visualization</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        #chart {
+            margin-top: 30px;
+        }
+
+        .bar {
+            opacity: 0.85;
+        }
+
+        .bar:hover {
+            opacity: 1;
+        }
+
+        .axis-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .legend {
+            font-size: 14px;
+        }
+
+        .analysis {
+            margin-top: 35px;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .analysis h3 {
+            margin-bottom: 10px;
+        }
+
+        #tooltip {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #999;
+            padding: 8px 10px;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Lab 4</h1>
+    <header>
 
-    <p>
-        Lab 4 will be added here.
-    </p>
+        <h1>STATS 401 Labs</h1>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../lab1/">Lab 1</a>
+            <a href="../lab2/">Lab 2</a>
+            <a href="../lab3/">Lab 3</a>
+            <a href="../lab4/">Lab 4</a>
+            <a href="../lab5/">Lab 5</a>
+            <a href="../lab6/">Lab 6</a>
+            <a href="../lab7/">Lab 7</a>
+            <a href="../lab8/">Lab 8</a>
+            <a href="../lab9/">Lab 9</a>
+            <a href="../lab10/">Lab 10</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <h2>Lab 4: Cleaning Web Data for Visualization</h2>
+
+        <p>
+            This visualization shows the distribution of
+            model-estimated tweet sentiment across six U.S. airlines.
+            Sentiment was calculated using a RoBERTa-based
+            Twitter sentiment model.
+        </p>
+
+
+        <div id="chart"></div>
+
+        <div id="tooltip"></div>
+
+
+        <div class="analysis">
+
+            <h3>Analysis</h3>
+
+            <p>
+                This project uses a public dataset of more than 14,000
+                tweets about six U.S. airlines. I cleaned the raw data
+                by removing duplicate tweets, keeping valid tweet text,
+                standardizing structured fields, converting retweet
+                counts to numeric values, and parsing tweet timestamps.
+                Sentiment was estimated from the tweet text using the
+                RoBERTa-based
+                twitter-roberta-base-sentiment-latest model. The model
+                generated negative, neutral, and positive probabilities
+                for each tweet, and the class with the highest
+                probability was used as the predicted sentiment.
+                The grouped bar chart compares the number of negative,
+                neutral, and positive tweets for each airline. Overall,
+                negative tweets are the most common sentiment category
+                in the dataset. Some airlines also have noticeably
+                different sentiment distributions, suggesting that
+                customer reactions varied across airlines. These
+                sentiment labels are model-generated estimates rather
+                than ground-truth classifications.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab4.js"></script>
 
 </body>
-
 </html>
