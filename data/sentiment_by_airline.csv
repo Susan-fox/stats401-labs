@@ -1,0 +1,19 @@
+airline,sentiment,count
+American,Negative,1536
+American,Neutral,668
+American,Positive,400
+Delta,Negative,743
+Delta,Neutral,726
+Delta,Positive,753
+Southwest,Negative,964
+Southwest,Neutral,699
+Southwest,Positive,757
+US Airways,Negative,1884
+US Airways,Neutral,667
+US Airways,Positive,362
+United,Negative,2118
+United,Neutral,1054
+United,Positive,650
+Virgin America,Negative,169
+Virgin America,Neutral,142
+Virgin America,Positive,193
