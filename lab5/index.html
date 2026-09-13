@@ -1,23 +1,499 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 5</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lab 5 - Interactive Network Visualization
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="lab5.css"
+    >
 </head>
+
 
 <body>
 
-    <h1>Lab 5</h1>
+    <header>
 
-    <p>
-        Lab 5 will be added here.
-    </p>
+        <h1>STATS 401</h1>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <p class="subtitle">
+            Data Acquisition and Visualization
+        </p>
+
+    </header>
+
+
+    <!-- ============================== -->
+    <!-- Navigation -->
+    <!-- ============================== -->
+
+    <nav class="lab-nav">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../lab1/">
+            Lab 1
+        </a>
+
+        <a href="../lab2/">
+            Lab 2
+        </a>
+
+        <a href="../lab3/">
+            Lab 3
+        </a>
+
+        <a href="../lab4/">
+            Lab 4
+        </a>
+
+        <a href="../lab5/">
+            Lab 5
+        </a>
+
+        <a href="../lab6/">
+            Lab 6
+        </a>
+
+        <a href="../lab7/">
+            Lab 7
+        </a>
+
+        <a href="../lab8/">
+            Lab 8
+        </a>
+
+        <a href="../lab9/">
+            Lab 9
+        </a>
+
+        <a href="../lab10/">
+            Lab 10
+        </a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- ============================== -->
+        <!-- Lab Title -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h1>
+                Lab 5: Interactive Network Visualization
+            </h1>
+
+            <p>
+                This lab explores a synthetic urban transit network
+                using a force-directed node-link diagram and an
+                adjacency matrix.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Dataset Description -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                1. Dataset Description
+            </h2>
+
+            <p>
+                This visualization explores a synthetic urban transit
+                network containing 50 stations and 50 direct transit
+                connections. Each station has a district, daily passenger
+                volume, and station type. Each connection has a travel time
+                and route type.
+            </p>
+
+
+            <div class="encoding-summary">
+
+                <div>
+
+                    <h3>
+                        Node Encodings
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <strong>Color:</strong>
+                            District
+                        </li>
+
+                        <li>
+                            <strong>Size:</strong>
+                            Daily passengers
+                        </li>
+
+                        <li>
+                            <strong>Shape:</strong>
+                            Station type
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Link Encodings
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <strong>Width:</strong>
+                            Travel time
+                        </li>
+
+                        <li>
+                            <strong>Color:</strong>
+                            Route type
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Node-Link Visualization -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                2. Node-Link Visualization
+            </h2>
+
+            <p class="instruction">
+                Hover over a station to highlight its direct connections.
+                Drag a station to inspect the network structure.
+            </p>
+
+
+            <div
+                id="network"
+                class="visualization-container"
+            ></div>
+
+
+            <div class="legend-container">
+
+                <div>
+
+                    <h3>
+                        District
+                    </h3>
+
+                    <div id="district-legend"></div>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Station Type
+                    </h3>
+
+                    <div id="station-type-legend"></div>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Route Type
+                    </h3>
+
+                    <div id="route-legend"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Node-Link Description -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                3. Node-Link Design Description
+            </h2>
+
+            <p>
+                In the node-link visualization, node color represents
+                district because district is a categorical attribute and
+                color makes geographic groups easy to distinguish.
+                Node size represents daily passenger volume, allowing
+                high-volume stations to visually stand out. Station type
+                is encoded with shape so that local, transfer, and terminal
+                stations remain distinguishable without relying on color
+                alone.
+            </p>
+
+            <p>
+                For the routes, line width represents travel time, while
+                route color distinguishes Metro, Express, and Shuttle
+                connections. Hovering over a station highlights its direct
+                neighbors and connected routes, while the tooltip provides
+                detailed station information. Dragging allows the user to
+                temporarily rearrange stations to inspect overlapping
+                connections.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Matrix -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                4. Adjacency Matrix
+            </h2>
+
+            <p class="instruction">
+                Rows and columns represent stations.
+                Filled cells indicate direct connections.
+            </p>
+
+
+            <div
+                id="matrix"
+                class="visualization-container matrix-container"
+            ></div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Matrix Description -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                5. Matrix Design Description
+            </h2>
+
+            <p>
+                The adjacency matrix represents every station as both a row
+                and a column. A filled cell indicates that two stations are
+                directly connected. Cell color represents route type, while
+                cell opacity represents travel time. Stations are ordered by
+                district so that connections within and between districts
+                form visible blocks in the matrix. Row and column label
+                colors also indicate district membership.
+            </p>
+
+            <p>
+                This design makes dense connection patterns easier to inspect
+                without the line crossings found in a node-link diagram.
+                However, paths and the overall spatial topology of the
+                network are easier to understand in the node-link view.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Questions -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                6. Network Questions and Findings
+            </h2>
+
+
+            <div class="question-block">
+
+                <h3>
+                    1. Which stations appear central in the network?
+                </h3>
+
+                <p>
+                    <strong>Well — Node-link visualization.</strong>
+                    Stations 31, 23, 7, 34, and 18 appear relatively central
+                    because they connect to several other stations and occupy
+                    important positions linking different parts of the network.
+                    This is easiest to see in the node-link diagram, where the
+                    number and arrangement of incident links reveal which
+                    stations have multiple direct neighbors. Hover highlighting
+                    also helps isolate each station's immediate connections.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    2. Which districts are strongly connected to one another?
+                </h3>
+
+                <p>
+                    <strong>
+                        Well — Adjacency matrix, supported by the node-link view.
+                    </strong>
+                    The strongest inter-district connection appears between the
+                    East and South districts. Other strong connections are
+                    visible between Central and North, East and West, North and
+                    South, and Central and West. In the adjacency matrix,
+                    stations are ordered by district and label color shows
+                    district membership, so clusters of filled cells between
+                    district blocks reveal these patterns clearly.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    3. Where are transfer or terminal stations located
+                    in the topology?
+                </h3>
+
+                <p>
+                    <strong>Well — Node-link visualization.</strong>
+                    Transfer and terminal stations are distributed throughout
+                    the network rather than being confined to one area. Their
+                    different node shapes make their locations easy to identify:
+                    circles represent terminals, squares represent transfer
+                    stations, and triangles represent local stations. For
+                    example, terminal stations such as Stations 7, 10, 25, 31,
+                    and 34 occur in several different parts of the topology,
+                    while transfer stations such as Stations 17, 26, 38, and 47
+                    are also spread across the network.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    4. Which stations have high passenger volume?
+                </h3>
+
+                <p>
+                    <strong>Well — Node-link visualization.</strong>
+                    Stations 50, 49, 48, 47, and 46 are among the
+                    highest-volume stations. Passenger volume is encoded by
+                    node size, so stations with larger symbols indicate heavier
+                    daily use. For example, Station 47 is visibly one of the
+                    larger nodes in the displayed network. The size encoding
+                    allows high-volume stations to stand out without requiring
+                    the viewer to read exact passenger counts.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    5. Where are the longest direct travel-time connections?
+                </h3>
+
+                <p>
+                    <strong>Well — Both visualizations.</strong>
+                    The longest direct connection is between Station 7 and
+                    Station 31, followed by connections such as Station 18–34
+                    and Station 29–50. In the node-link diagram, travel time is
+                    encoded by link width, so longer connections appear as
+                    thicker lines. In the adjacency matrix, travel time is
+                    encoded by cell opacity, which provides a second way to
+                    identify unusually long routes.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    6. Are particular route types concentrated in particular
+                    parts of the network?
+                </h3>
+
+                <p>
+                    <strong>Partially — Both visualizations.</strong>
+                    There is some concentration, but the route types are broadly
+                    distributed across the network. Express routes appear
+                    frequently between Central–North, East–West, and
+                    Central–West stations. Metro routes are especially visible
+                    between East–South stations, while Shuttle routes also occur
+                    frequently between East–South and North–South stations.
+                    Route type is encoded by link color in the node-link diagram
+                    and cell color in the adjacency matrix, allowing these
+                    patterns to be compared across different parts of the
+                    network.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <p class="back-home">
+
+            <a href="../index.html">
+                ← Back to home
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <div
+        id="tooltip"
+        class="tooltip"
+    ></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script src="lab5.js"></script>
 
 </body>
 
