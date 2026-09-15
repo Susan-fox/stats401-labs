@@ -1,23 +1,237 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 6</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lab 6 - Hierarchical Data Visualization
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="lab6.css"
+    >
 </head>
+
 
 <body>
 
-    <h1>Lab 6</h1>
+    <header>
 
-    <p>
-        Lab 6 will be added here.
-    </p>
+        <h1>STATS 401</h1>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <p class="subtitle">
+            Data Acquisition and Visualization
+        </p>
+
+    </header>
+
+
+    <!-- ============================== -->
+    <!-- Navigation -->
+    <!-- ============================== -->
+
+    <nav class="lab-nav">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../lab1/">
+            Lab 1
+        </a>
+
+        <a href="../lab2/">
+            Lab 2
+        </a>
+
+        <a href="../lab3/">
+            Lab 3
+        </a>
+
+        <a href="../lab4/">
+            Lab 4
+        </a>
+
+        <a href="../lab5/">
+            Lab 5
+        </a>
+
+        <a href="../lab6/">
+            Lab 6
+        </a>
+
+        <a href="../lab7/">
+            Lab 7
+        </a>
+
+        <a href="../lab8/">
+            Lab 8
+        </a>
+
+        <a href="../lab9/">
+            Lab 9
+        </a>
+
+        <a href="../lab10/">
+            Lab 10
+        </a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- ============================== -->
+        <!-- Title -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h1>
+                Lab 6: Hierarchical GDP Treemaps
+            </h1>
+
+            <p>
+                This lab visualizes a hierarchical GDP dataset using two
+                different treemap segmentation strategies.
+            </p>
+
+            <p>
+                The hierarchy is:
+                <strong>
+                    World → Continent → Area → Country
+                </strong>.
+                Rectangle area represents GDP, while color represents
+                GDP status.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Legend -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                GDP Status Legend
+            </h2>
+
+            <div id="status-legend"></div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Treemap 1 -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                1. Treemap — Squarify
+            </h2>
+
+            <p class="instruction">
+                Rectangle area represents GDP in billions of U.S. dollars.
+                Color represents GDP status. Hover over a country for details.
+            </p>
+
+            <div
+                id="treemap-squarify"
+                class="visualization-container"
+            ></div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Treemap 2 -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                2. Treemap — Slice-Dice
+            </h2>
+
+            <p class="instruction">
+                This view shows the same data using an alternating
+                horizontal and vertical subdivision strategy.
+            </p>
+
+            <div
+                id="treemap-slicedice"
+                class="visualization-container"
+            ></div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Design Description -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                3. Design Description
+            </h2>
+
+            <p>
+                In both treemaps, rectangle area represents GDP because area
+                provides a direct part-to-whole representation of quantitative
+                values within the hierarchy. Countries with larger GDP values
+                therefore occupy more visual space. GDP status is encoded with
+                color because Increase, Unchanged, and Decrease are categorical
+                states that can be distinguished efficiently without changing
+                the spatial structure. Tooltips provide exact values and
+                hierarchical context without overcrowding the visualization.
+            </p>
+
+            <p>
+                The first treemap uses the Squarify algorithm, which produces
+                rectangles with more balanced aspect ratios and generally makes
+                country labels and area comparisons easier to read. The second
+                uses Slice-Dice, which alternates the direction of subdivision
+                across hierarchy levels. This makes the parent-child structure
+                more visually apparent, but some countries become long, narrow
+                rectangles. Comparing the two views shows how tiling strategy
+                changes readability even though the hierarchy and GDP values
+                remain identical.
+            </p>
+
+        </section>
+
+
+        <p class="back-home">
+
+            <a href="../index.html">
+                ← Back to home
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <div
+        id="tooltip"
+        class="tooltip"
+    ></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script src="lab6.js"></script>
 
 </body>
 
