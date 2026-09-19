@@ -1,23 +1,408 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 7</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lab 7 - Animated Temporal Commercial Network
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="lab7.css"
+    >
 </head>
+
 
 <body>
 
-    <h1>Lab 7</h1>
+    <header>
 
-    <p>
-        Lab 7 will be added here.
-    </p>
+        <h1>STATS 401</h1>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <p class="subtitle">
+            Data Acquisition and Visualization
+        </p>
+
+    </header>
+
+
+    <nav class="lab-nav">
+
+        <a href="../index.html">Home</a>
+        <a href="../lab1/">Lab 1</a>
+        <a href="../lab2/">Lab 2</a>
+        <a href="../lab3/">Lab 3</a>
+        <a href="../lab4/">Lab 4</a>
+        <a href="../lab5/">Lab 5</a>
+        <a href="../lab6/">Lab 6</a>
+        <a href="../lab7/">Lab 7</a>
+        <a href="../lab8/">Lab 8</a>
+        <a href="../lab9/">Lab 9</a>
+        <a href="../lab10/">Lab 10</a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- ============================== -->
+        <!-- Title -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h1>
+                Lab 7: Animated Temporal Commercial Network
+            </h1>
+
+            <p>
+                This visualization shows how commercial relationships
+                among 12 companies change over 60 days.
+            </p>
+
+            <p>
+                Node color represents business sector, node size represents
+                current transaction volume, and node stroke represents region.
+                Link color represents transaction type, while link width
+                represents transaction amount.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Controls -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                1. Animation Controls
+            </h2>
+
+            <div class="controls">
+
+                <button id="play">
+                    Play
+                </button>
+
+                <button id="pause">
+                    Pause
+                </button>
+
+                <button id="reset">
+                    Reset
+                </button>
+
+                <input
+                    type="range"
+                    id="time-slider"
+                    min="1"
+                    max="60"
+                    value="1"
+                >
+
+            </div>
+
+
+            <div class="time-display">
+
+                <strong id="day-label">
+                    Day 1
+                </strong>
+
+                <span id="date-label">
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Legend -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                2. Encoding Legend
+            </h2>
+
+            <div class="legend-grid">
+
+                <div>
+
+                    <h3>
+                        Node Color — Sector
+                    </h3>
+
+                    <div id="sector-legend"></div>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Node Stroke — Region
+                    </h3>
+
+                    <div id="region-legend"></div>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Link Color — Transaction Type
+                    </h3>
+
+                    <div id="transaction-legend"></div>
+
+                </div>
+
+            </div>
+
+            <p>
+                <strong>Node size:</strong>
+                current transaction volume.
+            </p>
+
+            <p>
+                <strong>Link width:</strong>
+                transaction amount.
+            </p>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Network -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                3. Temporal Commercial Network
+            </h2>
+
+            <p class="instruction">
+                Hover over a company or active relationship for details.
+                Use the controls above to inspect any day manually.
+            </p>
+
+            <div id="network"></div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Summary -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                4. Current Day Summary
+            </h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        Active Companies
+                    </span>
+
+                    <strong id="active-companies">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        Active Links
+                    </span>
+
+                    <strong id="active-links">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span class="summary-label">
+                        Total Transaction Value
+                    </span>
+
+                    <strong id="total-value">
+                        $0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- Questions -->
+        <!-- ============================== -->
+
+        <section>
+
+            <h2>
+                5. Temporal Network Questions
+            </h2>
+
+
+            <div class="question-block">
+
+                <h3>
+                    1. How does overall network connectivity change
+                    across the 60 days?
+                </h3>
+
+                <p id="answer-1">
+                    Overall connectivity fluctuates from day to day, but the
+                    network generally becomes more connected toward the end of
+                    the 60-day period. During the first 20 days, there are about
+                    5.5 active links and 8.6 active companies per day on
+                    average. During the last 20 days, this increases to about
+                    7.3 links and 9.7 active companies. The most connected days
+                    include Days 45, 51, and 57, when all 12 companies are
+                    active and 10 links are present.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    2. Which companies become more central or commercially
+                    active over time?
+                </h3>
+
+                <p id="answer-2">
+                    Fusion Electronics is one of the most commercially active
+                    companies across the full period and is especially
+                    prominent during the middle portion of the timeline.
+                    Later in the period, Ion Systems and Cedar Retail become
+                    much more active. Ion Systems has the highest average
+                    transaction volume during Days 41–60, while Cedar Retail
+                    also develops more connections during this period.
+                    The changing node sizes make these shifts in activity
+                    visible.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    3. Are there periods when the network consists of
+                    relatively separate clusters?
+                </h3>
+
+                <p id="answer-3">
+                    Yes. Several days contain multiple disconnected groups
+                    rather than one highly connected network. This is especially
+                    noticeable on lower-connectivity days such as Days 3, 4,
+                    9, and 16, when the active network is divided into as many
+                    as four separate components. Similar fragmentation also
+                    appears around Days 28 and 40. On more active days, larger
+                    connected groups form as additional commercial relationships
+                    appear.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    4. Which commercial relationships appear, disappear,
+                    or become stronger over time?
+                </h3>
+
+                <p id="answer-4">
+                    Several relationships recur frequently, including
+                    Delta Components–Fusion Electronics,
+                    Apex Textiles–BlueRiver Logistics, and
+                    Ion Systems–Lumen Distribution. Later in the 60-day
+                    period, new strong relationships appear, such as
+                    Fusion Electronics–Ion Systems,
+                    Cedar Retail–Keystone Materials,
+                    Cedar Retail–Granite Wholesale, and
+                    Apex Textiles–Ion Systems. In contrast, relationships
+                    such as Harbor Shipping–Keystone Materials and
+                    BlueRiver Logistics–Delta Components are active earlier
+                    but disappear later.
+                </p>
+
+            </div>
+
+
+            <div class="question-block">
+
+                <h3>
+                    5. Does the network become more or less cross-regional
+                    over time?
+                </h3>
+
+                <p id="answer-5">
+                    The network becomes somewhat more cross-regional over time.
+                    Cross-regional transactions account for about 64% of
+                    transaction records in the first 20 days and about 72% in
+                    the final 20 days. The share of total transaction value
+                    involving companies from different regions also increases
+                    substantially in the later period. This suggests that the
+                    commercial network gradually becomes more geographically
+                    interconnected.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <p class="back-home">
+
+            <a href="../index.html">
+                ← Back to home
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <div
+        id="tooltip"
+        class="tooltip"
+    ></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script src="lab7.js"></script>
 
 </body>
 
