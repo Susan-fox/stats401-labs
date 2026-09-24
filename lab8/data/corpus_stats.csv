@@ -1,1 +1,2 @@
-
+﻿pdf_pages,raw_passages,clean_passages,average_passage_length,formal_sections,semantic_topics,embedding_model,embedding_dimensions,umap_neighbors,umap_min_dist,clustering_method,number_of_clusters
+400,1450,1084,96.97,86,8,all-MiniLM-L6-v2,384,15,0.15,KMeans,8
