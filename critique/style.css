@@ -1,0 +1,561 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f6f8;
+  color: #202a35;
+}
+
+
+/* ==========================================================
+   TOP BAR
+========================================================== */
+
+.top-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e1e5ea;
+  padding: 15px 5%;
+}
+
+.home-link {
+  color: #375b80;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.home-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.page {
+  width: min(1380px, 94%);
+  margin: 0 auto;
+  padding: 50px 0 80px;
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero {
+  margin-bottom: 70px;
+  max-width: 1050px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #1e2d3d;
+}
+
+.hero-question {
+  margin: 18px 0 0;
+  max-width: 1000px;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  line-height: 1.18;
+  color: #3e5f7e;
+}
+
+.subtitle {
+  margin-top: 22px;
+  font-size: 1.08rem;
+  color: #66788a;
+}
+
+
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.section {
+  margin-bottom: 85px;
+}
+
+.section > h2 {
+  margin: 0 0 18px;
+  font-size: 2rem;
+  color: #24384c;
+}
+
+.section > p,
+.chart-intro {
+  max-width: 1000px;
+  color: #5d6d7d;
+  line-height: 1.75;
+}
+
+
+/* ==========================================================
+   ORIGINAL IMAGE
+========================================================== */
+
+.image-card {
+  margin-top: 25px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e1e5ea;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(31, 43, 55, 0.05);
+}
+
+.original-image {
+  width: 100%;
+  display: block;
+}
+
+.source-text {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #7d8996;
+}
+
+
+/* ==========================================================
+   CRITIQUE
+========================================================== */
+
+.critique-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.critique-card {
+  background: white;
+  border: 1px solid #e2e6ea;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.critique-card.strength {
+  border-top: 5px solid #6c9c78;
+}
+
+.critique-card.weakness {
+  border-top: 5px solid #c77969;
+}
+
+.key-weakness {
+  grid-column: 1 / -1;
+}
+
+.card-tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #eef2f5;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #657786;
+}
+
+.critique-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: #25384a;
+}
+
+.critique-card p {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 0.94rem;
+  color: #5f6f7e;
+}
+
+
+/* ==========================================================
+   MODEL NOTE
+========================================================== */
+
+.model-note {
+  max-width: 1000px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-left: 4px solid #be9258;
+  border-radius: 5px;
+  background: #faf5ed;
+  color: #675a48;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+
+/* ==========================================================
+   CONTROLS
+========================================================== */
+
+.controls-panel {
+  margin: 28px 0 20px;
+  padding: 18px 20px;
+  background: white;
+  border: 1px solid #e1e5ea;
+  border-radius: 12px;
+}
+
+.control-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.control-label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #334d64;
+}
+
+#region-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region-button {
+  border: 1px solid #bcc7d2;
+  background: white;
+  color: #39536c;
+  padding: 8px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.83rem;
+  transition: 0.18s ease;
+}
+
+.region-button:hover {
+  background: #f0f3f6;
+}
+
+.region-button.active {
+  background: #304c66;
+  color: white;
+  border-color: #304c66;
+}
+
+.interaction-note {
+  margin: 12px 0 0;
+  font-size: 0.86rem;
+  color: #7c8996;
+}
+
+
+/* ==========================================================
+   CHART LAYOUT
+========================================================== */
+
+.visualization-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(400px, 0.85fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.chart-card {
+  min-width: 0;
+  background: white;
+  border: 1px solid #e1e5ea;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 5px 18px rgba(31, 43, 55, 0.05);
+}
+
+.chart-header {
+  margin-bottom: 8px;
+}
+
+.chart-header h3 {
+  margin: 2px 0 8px;
+  font-size: 1.25rem;
+  color: #24384c;
+}
+
+.chart-header p:not(.chart-kicker) {
+  margin: 0;
+  max-width: 700px;
+  line-height: 1.55;
+  font-size: 0.87rem;
+  color: #748291;
+}
+
+.chart-kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #8290a0;
+}
+
+#scatter-chart,
+#gap-chart {
+  width: 100%;
+  overflow-x: auto;
+}
+
+#scatter-chart svg,
+#gap-chart svg {
+  display: block;
+}
+
+
+/* ==========================================================
+   AXES / GRID
+========================================================== */
+
+.axis text {
+  font-size: 11px;
+  fill: #697989;
+}
+
+.axis path,
+.axis line {
+  stroke: #bec7cf;
+}
+
+.grid line {
+  stroke: #e6eaee;
+  stroke-dasharray: 3 4;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.axis-label {
+  font-size: 12px;
+  font-weight: 700;
+  fill: #435b70;
+}
+
+
+/* ==========================================================
+   SCATTER
+========================================================== */
+
+.country-dot {
+  stroke: white;
+  stroke-width: 1px;
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    stroke-width 0.15s ease;
+}
+
+.country-dot.focused {
+  stroke: #172636;
+  stroke-width: 2.6px;
+}
+
+.trend-line {
+  fill: none;
+  stroke: #314354;
+  stroke-width: 2.2px;
+  stroke-dasharray: 7 5;
+}
+
+.trend-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #435464;
+}
+
+.legend-title {
+  font-size: 11px;
+  font-weight: 800;
+  fill: #435464;
+}
+
+.legend-text {
+  font-size: 10px;
+  fill: #748291;
+}
+
+
+/* ==========================================================
+   GAP CHART
+========================================================== */
+
+.gap-zero-line {
+  stroke: #768696;
+  stroke-width: 1.2px;
+}
+
+.gap-mark {
+  stroke-width: 2px;
+  cursor: pointer;
+}
+
+.gap-dot {
+  cursor: pointer;
+}
+
+.gap-country-label {
+  font-size: 10.5px;
+  fill: #526271;
+}
+
+.gap-value-label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* ==========================================================
+   TOOLTIP
+========================================================== */
+
+.tooltip {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  min-width: 235px;
+  padding: 13px 15px;
+  background: rgba(25, 36, 47, 0.96);
+  color: white;
+  border-radius: 9px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.tooltip-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+
+/* ==========================================================
+   INTERPRETATION
+========================================================== */
+
+.interpretation-box {
+  margin-top: 16px;
+  padding: 15px 18px;
+  border-left: 4px solid #4e718f;
+  background: #edf2f6;
+  border-radius: 5px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #4d6275;
+}
+
+
+/* ==========================================================
+   DESIGN DECISIONS
+========================================================== */
+
+.decision-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.decision-card {
+  display: flex;
+  gap: 18px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #e1e5ea;
+  border-radius: 12px;
+}
+
+.decision-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #304c66;
+  color: white;
+  font-weight: 800;
+}
+
+.decision-card h3 {
+  margin: 2px 0 8px;
+  color: #283d50;
+}
+
+.decision-card p {
+  margin: 0;
+  line-height: 1.65;
+  color: #607080;
+  font-size: 0.95rem;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer {
+  border-top: 1px solid #e1e5ea;
+  background: white;
+  padding: 26px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #83909c;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1050px) {
+
+  .visualization-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 760px) {
+
+  .critique-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .key-weakness {
+    grid-column: auto;
+  }
+
+  .control-block {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .decision-card {
+    gap: 13px;
+  }
+
+}

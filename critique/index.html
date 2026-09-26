@@ -1,1 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Beyond Wealth | Visualization Critique and Redesign</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+
+  <header class="top-bar">
+    <a class="home-link" href="../index.html">← Back to Home</a>
+  </header>
+
+  <main class="page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+      <p class="eyebrow">
+        STATS 401 · Visualization Critique and Redesign
+      </p>
+
+      <h1>Beyond Wealth</h1>
+
+      <h2 class="hero-question">
+        Which Countries Live Longer—or Shorter—Than the
+        Income–Longevity Trend Suggests?
+      </h2>
+
+      <p class="subtitle">
+        A critique and redesign of Our World in Data's
+        <em>Life Expectancy vs. GDP per Capita</em> visualization.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         ORIGINAL
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Original Visualization</h2>
+
+      <p>
+        The original Our World in Data visualization compares GDP per capita
+        and life expectancy across countries in 2023. Horizontal position
+        represents GDP per capita, vertical position represents life expectancy,
+        circle size represents population, and color represents world region.
+      </p>
+
+      <div class="image-card">
+
+        <img
+          class="original-image"
+          src="images/original.png"
+          alt="Original Our World in Data visualization of life expectancy versus GDP per capita in 2023"
+        />
+
+      </div>
+
+      <p class="source-text">
+        Source: Our World in Data,
+        <em>Life expectancy vs. GDP per capita, 2023</em>.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CRITIQUE
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Critique of the Original</h2>
+
+      <div class="critique-grid">
+
+        <div class="critique-card strength">
+
+          <span class="card-tag">Strength</span>
+
+          <h3>Effective Position Encoding</h3>
+
+          <p>
+            GDP per capita and life expectancy are encoded using horizontal
+            and vertical position. Because position is an effective channel
+            for quantitative comparison, the overall relationship between the
+            two variables is easy to perceive.
+          </p>
+
+        </div>
+
+
+        <div class="critique-card strength">
+
+          <span class="card-tag">Strength</span>
+
+          <h3>High Information Density</h3>
+
+          <p>
+            The visualization combines GDP, life expectancy, population, and
+            world region in one chart, allowing viewers to explore several
+            dimensions of the data simultaneously.
+          </p>
+
+        </div>
+
+
+        <div class="critique-card weakness">
+
+          <span class="card-tag">Opportunity</span>
+
+          <h3>Population Bubbles Compete With the Main Task</h3>
+
+          <p>
+            Population is encoded using circle area. Area supports rough
+            magnitude judgments but is less effective for precise comparison,
+            while very large bubbles can visually dominate nearby countries
+            and increase occlusion.
+          </p>
+
+        </div>
+
+
+        <div class="critique-card weakness">
+
+          <span class="card-tag">Opportunity</span>
+
+          <h3>Dense Labels Create Visual Clutter</h3>
+
+          <p>
+            Country labels overlap in dense parts of the chart, making
+            individual countries harder to identify and increasing competition
+            between text and data marks.
+          </p>
+
+        </div>
+
+
+        <div class="critique-card weakness key-weakness">
+
+          <span class="card-tag">Key Opportunity</span>
+
+          <h3>
+            The Overall Relationship Is Clear, but Deviations Are Hard to Compare
+          </h3>
+
+          <p>
+            The chart clearly communicates that richer countries generally
+            have higher life expectancy. However, viewers must estimate
+            vertical distance from the overall pattern themselves, making it
+            difficult to compare which countries have unusually high or low
+            life expectancy relative to countries at similar income levels.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REDESIGN
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Redesigned Visualization</h2>
+
+      <p class="chart-intro">
+        The redesign shifts the analytical question from
+        <strong>"Are richer countries healthier?"</strong> to
+        <strong>
+          "Which countries deviate most from the typical income–longevity
+          relationship?"
+        </strong>
+      </p>
+
+      <div class="model-note">
+        <strong>Important:</strong>
+        the fitted curve is a descriptive benchmark estimated from the 2023
+        cross-sectional data. It does not imply that GDP causally determines
+        life expectancy.
+      </div>
+
+
+      <!-- CONTROLS -->
+
+      <div class="controls-panel">
+
+        <div class="control-block">
+
+          <span class="control-label">Region</span>
+
+          <div id="region-buttons"></div>
+
+        </div>
+
+        <p class="interaction-note">
+          Hover over a country in either view to highlight it across both
+          charts. Use the region buttons to focus the comparison.
+        </p>
+
+      </div>
+
+
+      <!-- TWO LINKED VIEWS -->
+
+      <div class="visualization-grid">
+
+
+        <!-- VIEW 1 -->
+
+        <div class="chart-card">
+
+          <div class="chart-header">
+
+            <p class="chart-kicker">VIEW 1 · OVERVIEW</p>
+
+            <h3>Income and Life Expectancy</h3>
+
+            <p>
+              The fitted curve summarizes the typical relationship between GDP
+              per capita and life expectancy. Point size represents the
+              magnitude of deviation from that fitted trend.
+            </p>
+
+          </div>
+
+          <div id="scatter-chart"></div>
+
+        </div>
+
+
+        <!-- VIEW 2 -->
+
+        <div class="chart-card">
+
+          <div class="chart-header">
+
+            <p class="chart-kicker">VIEW 2 · COMPARISON</p>
+
+            <h3>Deviation From the Income–Longevity Trend</h3>
+
+            <p>
+              The chart ranks the 16 countries with the largest absolute
+              deviations in the selected region. Positive values indicate
+              higher life expectancy than the fitted benchmark, while negative
+              values indicate lower life expectancy.
+            </p>
+
+          </div>
+
+          <div id="gap-chart"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOOLTIP -->
+
+      <div id="tooltip" class="tooltip"></div>
+
+
+      <!-- INTERPRETATION -->
+
+      <div class="interpretation-box">
+
+        <strong>How to read the redesign:</strong>
+
+        Large circles in the scatterplot represent countries that deviate
+        strongly from the fitted income–longevity trend. The linked ranking
+        makes both the direction and magnitude of those deviations easier to
+        compare.
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REDESIGN DECISIONS
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Major Redesign Decisions</h2>
+
+      <div class="decision-grid">
+
+
+        <div class="decision-card">
+
+          <div class="decision-number">1</div>
+
+          <div>
+
+            <h3>Reassigned Point Size to Analytical Importance</h3>
+
+            <p>
+              Population no longer controls circle size. Instead, point size
+              represents the absolute deviation from the fitted
+              income–longevity trend. This makes unusually high- or
+              low-performing countries visually salient while population
+              remains available through the tooltip.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="decision-card">
+
+          <div class="decision-number">2</div>
+
+          <div>
+
+            <h3>Added a Fitted Income–Longevity Curve</h3>
+
+            <p>
+              A quadratic regression on log-transformed GDP provides a
+              descriptive benchmark for the typical relationship between
+              income and life expectancy. This makes deviation from the overall
+              pattern visually interpretable.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="decision-card">
+
+          <div class="decision-number">3</div>
+
+          <div>
+
+            <h3>Added a Coordinated Deviation Ranking</h3>
+
+            <p>
+              The second view transforms vertical distance from the fitted
+              curve into a common quantitative scale measured in years. This
+              makes unusual countries easier to rank and compare than in the
+              original scatterplot alone.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="decision-card">
+
+          <div class="decision-number">4</div>
+
+          <div>
+
+            <h3>Added Linked Interaction and Regional Filtering</h3>
+
+            <p>
+              Hovering over a country highlights it across both views, while
+              region filters reduce unrelated visual competition. This supports
+              movement between a global overview and more focused regional
+              comparisons.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ORIGINAL VS REDESIGN
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Original vs. Redesign</h2>
+
+      <p>
+        The original visualization is effective for communicating the broad
+        relationship between national income and longevity. The redesign
+        preserves that overview while making deviations from the relationship
+        easier to discover and compare.
+      </p>
+
+      <p>
+        The fitted curve gives viewers a reference baseline, point size directs
+        attention toward unusually large deviations, and the coordinated
+        ranking converts those deviations into directly comparable values.
+        Regional filtering further supports focused exploration without
+        completely removing the global context.
+      </p>
+
+      <p>
+        One trade-off is that population is no longer visible as an immediate
+        visual encoding. This information is moved to the tooltip because
+        population is secondary to the redesigned analytical task.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATA
+    ====================================================== -->
+
+    <section class="section">
+
+      <h2>Data Source</h2>
+
+      <p>
+        The redesign uses the displayed 2023 data downloaded from Our World in
+        Data. The dataset includes country, GDP per capita, life expectancy,
+        population, and world region.
+      </p>
+
+      <p class="source-text">
+        The original chart reports data from sources including the United
+        Nations, World Population Prospects, Eurostat, OECD, IMF, and World
+        Bank.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    STATS 401 · Visualization Critique and Redesign
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
