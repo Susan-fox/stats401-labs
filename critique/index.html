@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Beyond Wealth | Visualization Critique and Redesign</title>
+  <title>Visualization Critique and Redesign</title>
 
   <link rel="stylesheet" href="style.css" />
 
@@ -26,35 +26,47 @@
     <section class="hero">
 
       <p class="eyebrow">
-        STATS 401 · Visualization Critique and Redesign
+        STATS 401 · Individual Project
       </p>
 
-      <h1>Beyond Wealth</h1>
+      <h1>Visualization Critique and Redesign</h1>
 
       <h2 class="hero-question">
-        Which Countries Live Longer—or Shorter—Than the
-        Income–Longevity Trend Suggests?
+        Beyond Wealth: Which Countries Live Longer—or Shorter—
+        Than the Income–Longevity Trend Suggests?
       </h2>
 
       <p class="subtitle">
         A critique and redesign of Our World in Data's
-        <em>Life Expectancy vs. GDP per Capita</em> visualization.
+        <em>Life Expectancy vs. GDP per Capita, 2023</em>.
+      </p>
+
+      <p class="author-name">
+        Jiayang Sun
       </p>
 
     </section>
 
 
     <!-- =====================================================
-         ORIGINAL
+         PART 1
     ====================================================== -->
+
+    <section class="part-header">
+      <p>PART 1</p>
+      <h2>GitHub Pages Visualization</h2>
+    </section>
+
+
+    <!-- ORIGINAL VISUALIZATION -->
 
     <section class="section">
 
       <h2>Original Visualization</h2>
 
       <p>
-        The original Our World in Data visualization compares GDP per capita
-        and life expectancy across countries in 2023. Horizontal position
+        The original visualization from Our World in Data compares GDP per
+        capita and life expectancy across countries in 2023. Horizontal position
         represents GDP per capita, vertical position represents life expectancy,
         circle size represents population, and color represents world region.
       </p>
@@ -64,117 +76,26 @@
         <img
           class="original-image"
           src="images/original.png"
-          alt="Original Our World in Data visualization of life expectancy versus GDP per capita in 2023"
+          alt="Original Our World in Data visualization showing life expectancy versus GDP per capita in 2023"
         />
 
       </div>
 
       <p class="source-text">
-        Source: Our World in Data,
-        <em>Life expectancy vs. GDP per capita, 2023</em>.
+        Source:
+        <a
+          href="https://ourworldindata.org/grapher/life-expectancy-un-vs-gdp-per-capita-wb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Our World in Data — Life expectancy vs. GDP per capita
+        </a>
       </p>
 
     </section>
 
 
-    <!-- =====================================================
-         CRITIQUE
-    ====================================================== -->
-
-    <section class="section">
-
-      <h2>Critique of the Original</h2>
-
-      <div class="critique-grid">
-
-        <div class="critique-card strength">
-
-          <span class="card-tag">Strength</span>
-
-          <h3>Effective Position Encoding</h3>
-
-          <p>
-            GDP per capita and life expectancy are encoded using horizontal
-            and vertical position. Because position is an effective channel
-            for quantitative comparison, the overall relationship between the
-            two variables is easy to perceive.
-          </p>
-
-        </div>
-
-
-        <div class="critique-card strength">
-
-          <span class="card-tag">Strength</span>
-
-          <h3>High Information Density</h3>
-
-          <p>
-            The visualization combines GDP, life expectancy, population, and
-            world region in one chart, allowing viewers to explore several
-            dimensions of the data simultaneously.
-          </p>
-
-        </div>
-
-
-        <div class="critique-card weakness">
-
-          <span class="card-tag">Opportunity</span>
-
-          <h3>Population Bubbles Compete With the Main Task</h3>
-
-          <p>
-            Population is encoded using circle area. Area supports rough
-            magnitude judgments but is less effective for precise comparison,
-            while very large bubbles can visually dominate nearby countries
-            and increase occlusion.
-          </p>
-
-        </div>
-
-
-        <div class="critique-card weakness">
-
-          <span class="card-tag">Opportunity</span>
-
-          <h3>Dense Labels Create Visual Clutter</h3>
-
-          <p>
-            Country labels overlap in dense parts of the chart, making
-            individual countries harder to identify and increasing competition
-            between text and data marks.
-          </p>
-
-        </div>
-
-
-        <div class="critique-card weakness key-weakness">
-
-          <span class="card-tag">Key Opportunity</span>
-
-          <h3>
-            The Overall Relationship Is Clear, but Deviations Are Hard to Compare
-          </h3>
-
-          <p>
-            The chart clearly communicates that richer countries generally
-            have higher life expectancy. However, viewers must estimate
-            vertical distance from the overall pattern themselves, making it
-            difficult to compare which countries have unusually high or low
-            life expectancy relative to countries at similar income levels.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         REDESIGN
-    ====================================================== -->
+    <!-- REDESIGNED VISUALIZATION -->
 
     <section class="section">
 
@@ -182,7 +103,8 @@
 
       <p class="chart-intro">
         The redesign shifts the analytical question from
-        <strong>"Are richer countries healthier?"</strong> to
+        <strong>"Are richer countries healthier?"</strong>
+        to
         <strong>
           "Which countries deviate most from the typical income–longevity
           relationship?"
@@ -271,12 +193,8 @@
       </div>
 
 
-      <!-- TOOLTIP -->
-
       <div id="tooltip" class="tooltip"></div>
 
-
-      <!-- INTERPRETATION -->
 
       <div class="interpretation-box">
 
@@ -292,141 +210,11 @@
     </section>
 
 
-    <!-- =====================================================
-         REDESIGN DECISIONS
-    ====================================================== -->
+    <!-- DATA SOURCE -->
 
     <section class="section">
 
-      <h2>Major Redesign Decisions</h2>
-
-      <div class="decision-grid">
-
-
-        <div class="decision-card">
-
-          <div class="decision-number">1</div>
-
-          <div>
-
-            <h3>Reassigned Point Size to Analytical Importance</h3>
-
-            <p>
-              Population no longer controls circle size. Instead, point size
-              represents the absolute deviation from the fitted
-              income–longevity trend. This makes unusually high- or
-              low-performing countries visually salient while population
-              remains available through the tooltip.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="decision-card">
-
-          <div class="decision-number">2</div>
-
-          <div>
-
-            <h3>Added a Fitted Income–Longevity Curve</h3>
-
-            <p>
-              A quadratic regression on log-transformed GDP provides a
-              descriptive benchmark for the typical relationship between
-              income and life expectancy. This makes deviation from the overall
-              pattern visually interpretable.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="decision-card">
-
-          <div class="decision-number">3</div>
-
-          <div>
-
-            <h3>Added a Coordinated Deviation Ranking</h3>
-
-            <p>
-              The second view transforms vertical distance from the fitted
-              curve into a common quantitative scale measured in years. This
-              makes unusual countries easier to rank and compare than in the
-              original scatterplot alone.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="decision-card">
-
-          <div class="decision-number">4</div>
-
-          <div>
-
-            <h3>Added Linked Interaction and Regional Filtering</h3>
-
-            <p>
-              Hovering over a country highlights it across both views, while
-              region filters reduce unrelated visual competition. This supports
-              movement between a global overview and more focused regional
-              comparisons.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         ORIGINAL VS REDESIGN
-    ====================================================== -->
-
-    <section class="section">
-
-      <h2>Original vs. Redesign</h2>
-
-      <p>
-        The original visualization is effective for communicating the broad
-        relationship between national income and longevity. The redesign
-        preserves that overview while making deviations from the relationship
-        easier to discover and compare.
-      </p>
-
-      <p>
-        The fitted curve gives viewers a reference baseline, point size directs
-        attention toward unusually large deviations, and the coordinated
-        ranking converts those deviations into directly comparable values.
-        Regional filtering further supports focused exploration without
-        completely removing the global context.
-      </p>
-
-      <p>
-        One trade-off is that population is no longer visible as an immediate
-        visual encoding. This information is moved to the tooltip because
-        population is secondary to the redesigned analytical task.
-      </p>
-
-    </section>
-
-
-    <!-- =====================================================
-         DATA
-    ====================================================== -->
-
-    <section class="section">
-
-      <h2>Data Source</h2>
+      <h2>Data Source and References</h2>
 
       <p>
         The redesign uses the displayed 2023 data downloaded from Our World in
@@ -435,18 +223,228 @@
       </p>
 
       <p class="source-text">
-        The original chart reports data from sources including the United
-        Nations, World Population Prospects, Eurostat, OECD, IMF, and World
-        Bank.
+        Data source:
+        <a
+          href="https://ourworldindata.org/grapher/life-expectancy-un-vs-gdp-per-capita-wb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Our World in Data — Life expectancy vs. GDP per capita
+        </a>
       </p>
 
     </section>
+
+
+    <!-- =====================================================
+         PART 2
+    ====================================================== -->
+
+    <section class="part-header report-part">
+      <p>PART 2</p>
+      <h2>Visualization Critique and Redesign Report</h2>
+    </section>
+
+
+    <!-- REPORT -->
+
+    <article class="report">
+
+      <section class="report-section">
+
+        <h2>Original Visualization and Context</h2>
+
+        <p>
+          This project critiques and redesigns the Our World in Data
+          visualization <em>Life Expectancy vs. GDP per Capita, 2023</em>.
+          The original visualization uses a bubble scatterplot in which
+          horizontal position represents GDP per capita, vertical position
+          represents life expectancy, circle size represents population, and
+          color represents world region.
+        </p>
+
+        <p>
+          The intended message is that countries with higher GDP per capita
+          generally have higher life expectancy, although the relationship
+          becomes weaker at high income levels. The visualization is intended
+          for a broad audience, including general readers, students,
+          researchers, and policy-interested users who want to compare
+          countries or identify global patterns. Important user tasks include
+          comparing GDP and life expectancy across countries, identifying
+          regional patterns, locating unusual countries, and estimating how
+          strongly income and longevity are related.
+        </p>
+
+        <figure class="report-figure">
+
+          <img
+            src="images/original.png"
+            alt="Original Our World in Data visualization"
+          />
+
+          <figcaption>
+            Figure 1. Original visualization from Our World in Data.
+          </figcaption>
+
+        </figure>
+
+      </section>
+
+
+      <section class="report-section">
+
+        <h2>Critique</h2>
+
+        <p>
+          The visualization has several strengths. First, GDP per capita and
+          life expectancy are encoded using horizontal and vertical position.
+          Position is an effective visual channel for quantitative comparison,
+          so the broad positive relationship between income and longevity is
+          immediately visible. Second, the chart has high information density.
+          In addition to the two main quantitative variables, color communicates
+          region and bubble size communicates population, allowing multiple
+          dimensions of the data to be explored simultaneously.
+        </p>
+
+        <p>
+          However, the design also creates several problems. First, population
+          is encoded through circle area. Area is useful for rough magnitude
+          judgments, but it is difficult to compare precisely, and very large
+          bubbles can visually dominate nearby observations. Second, country
+          labels become crowded in dense areas of the chart. Overlapping labels
+          compete with the data marks and make individual countries harder to
+          identify.
+        </p>
+
+        <p>
+          The most important limitation is that deviations from the overall
+          income–longevity relationship are difficult to compare. The
+          scatterplot clearly shows the general trend, but viewers must mentally
+          estimate the vertical distance of each country from that trend. As a
+          result, it is difficult to answer a more analytical question: which
+          countries have unusually high or low life expectancy relative to
+          countries with similar levels of income?
+        </p>
+
+      </section>
+
+
+      <section class="report-section">
+
+        <h2>Redesign Rationale</h2>
+
+        <p>
+          My redesign changes the focus from simply observing correlation to
+          identifying and comparing deviations from the typical
+          income–longevity relationship.
+        </p>
+
+        <p>
+          The first major change is the use of a fitted curve based on a
+          quadratic regression of life expectancy on log-transformed GDP per
+          capita. This curve provides a descriptive benchmark for the
+          relationship between income and life expectancy. It is not intended
+          as a causal model; instead, it helps users see whether individual
+          countries lie above or below the overall pattern.
+        </p>
+
+        <p>
+          Second, population no longer determines circle size. Instead, circle
+          size represents the absolute deviation from the fitted trend.
+          Countries with unusual life expectancy values therefore become more
+          visually salient. Population is still available in the tooltip, but
+          it no longer competes with the primary analytical task.
+        </p>
+
+        <p>
+          Third, I added a coordinated ranking view. The second chart converts
+          each country's vertical deviation from the fitted curve into a
+          directly comparable value measured in years. It displays the countries
+          with the largest absolute deviations, making unusual cases easier to
+          rank and compare.
+        </p>
+
+        <p>
+          Finally, the redesign includes linked interaction and regional
+          filtering. Hovering over a country highlights it across both views,
+          while region buttons allow the viewer to focus on a specific
+          geographic group without losing the overall structure of the
+          visualization.
+        </p>
+
+        <figure class="report-figure">
+
+          <img
+            src="images/redesign.png"
+            alt="Redesigned visualization with linked scatterplot and deviation ranking"
+          />
+
+          <figcaption>
+            Figure 2. Redesigned visualization with a fitted trend,
+            deviation-based point size, linked ranking, and regional filtering.
+          </figcaption>
+
+        </figure>
+
+      </section>
+
+
+      <section class="report-section">
+
+        <h2>Original vs. Redesign</h2>
+
+        <p>
+          The original visualization is effective for showing the overall
+          relationship between GDP per capita and life expectancy. The redesign
+          preserves this overview but makes outliers and deviations much easier
+          to identify and compare. The fitted curve provides a reference
+          baseline, deviation-based point size directs attention toward unusual
+          countries, and the linked ranking converts visual distance into
+          explicit quantitative values.
+        </p>
+
+        <p>
+          A trade-off is that population is no longer visible immediately
+          through bubble size. Instead, it is available through interaction.
+          This reduces the number of simultaneous visual encodings, but it
+          better supports the redesigned task of understanding how countries
+          differ from the typical income–longevity pattern.
+        </p>
+
+      </section>
+
+
+      <section class="report-section">
+
+        <h2>References</h2>
+
+        <p>
+          Our World in Data.
+          <em>Life Expectancy vs. GDP per Capita, 2023</em>.
+          Data sources reported by the original visualization include the
+          United Nations, World Population Prospects, Eurostat, OECD, IMF, and
+          World Bank.
+        </p>
+
+        <p>
+          <a
+            href="https://ourworldindata.org/grapher/life-expectancy-un-vs-gdp-per-capita-wb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://ourworldindata.org/grapher/life-expectancy-un-vs-gdp-per-capita-wb
+          </a>
+        </p>
+
+      </section>
+
+    </article>
 
   </main>
 
 
   <footer>
-    STATS 401 · Visualization Critique and Redesign
+    Jiayang Sun · STATS 401 · Visualization Critique and Redesign
   </footer>
 
 

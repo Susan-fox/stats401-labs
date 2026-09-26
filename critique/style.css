@@ -53,7 +53,7 @@ body {
 
 .hero {
   margin-bottom: 70px;
-  max-width: 1050px;
+  max-width: 1100px;
 }
 
 .eyebrow {
@@ -67,8 +67,8 @@ body {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3.2rem, 7vw, 6rem);
-  line-height: 0.95;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 0.98;
   letter-spacing: -0.04em;
   color: #1e2d3d;
 }
@@ -76,7 +76,7 @@ body {
 .hero-question {
   margin: 18px 0 0;
   max-width: 1000px;
-  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
   line-height: 1.18;
   color: #3e5f7e;
 }
@@ -85,6 +85,43 @@ body {
   margin-top: 22px;
   font-size: 1.08rem;
   color: #66788a;
+}
+
+.author-name {
+  margin-top: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3e5f7e;
+}
+
+
+/* ==========================================================
+   PART HEADERS
+========================================================== */
+
+.part-header {
+  margin: 90px 0 40px;
+  padding: 22px 0 18px;
+  border-top: 2px solid #304c66;
+  border-bottom: 1px solid #dbe1e6;
+}
+
+.part-header p {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #718096;
+}
+
+.part-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #24384c;
+}
+
+.report-part {
+  margin-top: 110px;
 }
 
 
@@ -134,60 +171,12 @@ body {
   color: #7d8996;
 }
 
-
-/* ==========================================================
-   CRITIQUE
-========================================================== */
-
-.critique-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+a {
+  color: #3e678d;
 }
 
-.critique-card {
-  background: white;
-  border: 1px solid #e2e6ea;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.critique-card.strength {
-  border-top: 5px solid #6c9c78;
-}
-
-.critique-card.weakness {
-  border-top: 5px solid #c77969;
-}
-
-.key-weakness {
-  grid-column: 1 / -1;
-}
-
-.card-tag {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  background: #eef2f5;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #657786;
-}
-
-.critique-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.05rem;
-  color: #25384a;
-}
-
-.critique-card p {
-  margin: 0;
-  line-height: 1.65;
-  font-size: 0.94rem;
-  color: #5f6f7e;
+a:hover {
+  text-decoration: none;
 }
 
 
@@ -268,7 +257,7 @@ body {
 
 
 /* ==========================================================
-   CHART LAYOUT
+   VISUALIZATION LAYOUT
 ========================================================== */
 
 .visualization-grid {
@@ -326,7 +315,7 @@ body {
 
 
 /* ==========================================================
-   AXES / GRID
+   D3 AXES / GRID
 ========================================================== */
 
 .axis text {
@@ -363,9 +352,6 @@ body {
   stroke: white;
   stroke-width: 1px;
   cursor: pointer;
-  transition:
-    opacity 0.15s ease,
-    stroke-width 0.15s ease;
 }
 
 .country-dot.focused {
@@ -470,46 +456,48 @@ body {
 
 
 /* ==========================================================
-   DESIGN DECISIONS
+   REPORT
 ========================================================== */
 
-.decision-grid {
-  display: grid;
-  gap: 16px;
+.report {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
-.decision-card {
-  display: flex;
-  gap: 18px;
-  padding: 24px;
-  background: white;
+.report-section {
+  margin-bottom: 55px;
+}
+
+.report-section h2 {
+  margin: 0 0 16px;
+  font-size: 1.65rem;
+  color: #24384c;
+}
+
+.report-section p {
+  margin: 0 0 16px;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #4f5f6f;
+}
+
+.report-figure {
+  margin: 30px 0;
+}
+
+.report-figure img {
+  width: 100%;
+  display: block;
   border: 1px solid #e1e5ea;
-  border-radius: 12px;
+  background: white;
 }
 
-.decision-number {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #304c66;
-  color: white;
-  font-weight: 800;
-}
-
-.decision-card h3 {
-  margin: 2px 0 8px;
-  color: #283d50;
-}
-
-.decision-card p {
-  margin: 0;
-  line-height: 1.65;
-  color: #607080;
-  font-size: 0.95rem;
+.report-figure figcaption {
+  margin-top: 9px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #7d8996;
 }
 
 
@@ -541,21 +529,13 @@ footer {
 
 @media (max-width: 760px) {
 
-  .critique-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .key-weakness {
-    grid-column: auto;
-  }
-
   .control-block {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .decision-card {
-    gap: 13px;
+  .hero h1 {
+    font-size: 2.8rem;
   }
 
 }
