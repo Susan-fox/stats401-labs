@@ -1,23 +1,441 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 9</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lab 9 - Geospatial Visualization
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 
 <body>
 
-    <h1>Lab 9</h1>
+<header>
+
+    <h1>STATS 401</h1>
 
     <p>
-        Lab 9 will be added here.
+        Data Acquisition and Visualization
     </p>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+</header>
+
+
+<main>
+
+    <!-- ================================= -->
+    <!-- NAVIGATION -->
+    <!-- ================================= -->
+
+    <nav class="lab-nav">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../lab1/">
+            Lab 1
+        </a>
+
+        <a href="../lab2/">
+            Lab 2
+        </a>
+
+        <a href="../lab3/">
+            Lab 3
+        </a>
+
+        <a href="../lab4/">
+            Lab 4
+        </a>
+
+        <a href="../lab5/">
+            Lab 5
+        </a>
+
+        <a href="../lab6/">
+            Lab 6
+        </a>
+
+        <a href="../lab7/">
+            Lab 7
+        </a>
+
+        <a href="../lab8/">
+            Lab 8
+        </a>
+
+        <a
+            href="../lab9/"
+            class="active"
+        >
+            Lab 9
+        </a>
+
+        <a href="../lab10/">
+            Lab 10
+        </a>
+
+    </nav>
+
+
+    <!-- ================================= -->
+    <!-- PAGE INTRO -->
+    <!-- ================================= -->
+
+    <section class="card page-intro">
+
+        <h1>
+            Lab 9: Geospatial Visualization
+        </h1>
+
+        <p>
+            Comparing a choropleth map and a Dorling-style
+            cartogram of 2025 nominal GDP.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- DATASET -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            1. Dataset Description
+        </h2>
+
+        <p>
+            This visualization uses the 50 largest economies
+            by nominal GDP in 2025. GDP values are measured
+            in billions of current U.S. dollars.
+        </p>
+
+        <div class="dataset-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    50
+                </div>
+
+                <div class="stat-label">
+                    Economies
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    2025
+                </div>
+
+                <div class="stat-label">
+                    GDP Year
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    ISO-3
+                </div>
+
+                <div class="stat-label">
+                    Join Identifier
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    IMF WEO
+                </div>
+
+                <div class="stat-label">
+                    Data Source
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p class="note">
+            Countries outside the provided top-50 dataset
+            are treated as missing data rather than zero GDP.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- CHOROPLETH -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    2. 2025 GDP Choropleth
+                </h2>
+
+                <p>
+                    Geographic position and country shape are
+                    preserved, while color represents nominal GDP.
+                </p>
+
+            </div>
+
+
+            <button
+                id="reset-choropleth"
+                class="button"
+            >
+                Reset Zoom
+            </button>
+
+        </div>
+
+
+        <div class="encoding-box">
+
+            <span>
+                Position → Geographic Location
+            </span>
+
+            <span>
+                Shape → Country Boundary
+            </span>
+
+            <span>
+                Color → GDP
+            </span>
+
+        </div>
+
+
+        <div class="map-wrapper">
+
+            <svg
+                id="choropleth-map"
+                viewBox="0 0 1100 620"
+                preserveAspectRatio="xMidYMid meet"
+            ></svg>
+
+        </div>
+
+
+        <div class="legend-area">
+
+            <div class="legend-title">
+                2025 Nominal GDP
+                (billion USD, logarithmic scale)
+            </div>
+
+            <svg
+                id="color-legend"
+                width="620"
+                height="70"
+            ></svg>
+
+        </div>
+
+
+        <p class="note">
+            A logarithmic color scale is used because GDP is
+            highly skewed. A linear scale would allow the very
+            largest economies to dominate the color range and
+            make many other countries difficult to distinguish.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- CARTOGRAM -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            3. 2025 GDP Dorling Cartogram
+        </h2>
+
+        <p>
+            Each economy is represented by a circle positioned
+            near its geographic location. Circle area represents
+            nominal GDP.
+        </p>
+
+
+        <div class="encoding-box">
+
+            <span>
+                Position → Approximate Geography
+            </span>
+
+            <span>
+                Circle Area → GDP
+            </span>
+
+            <span>
+                Color → GDP
+            </span>
+
+        </div>
+
+
+        <div class="cartogram-note">
+
+            <strong>
+                Important:
+            </strong>
+
+            Circle area represents GDP rather than actual
+            geographic land area. Country shape and precise
+            adjacency are intentionally sacrificed.
+
+        </div>
+
+
+        <div class="map-wrapper">
+
+            <svg
+                id="cartogram-map"
+                viewBox="0 0 1100 620"
+                preserveAspectRatio="xMidYMid meet"
+            ></svg>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- LINKED HIGHLIGHT -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            Linked Highlighting
+        </h2>
+
+        <p>
+            Hover over a country to view details.
+            Click a country or cartogram circle to highlight
+            the same economy in both visualizations.
+        </p>
+
+
+        <div id="selection-panel">
+
+            <span class="selection-label">
+                Selected country:
+            </span>
+
+            <span id="selected-country">
+                None
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- COMPARISON -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            4. Design and Comparison
+        </h2>
+
+        <p>
+            The choropleth and cartogram emphasize different
+            aspects of the same GDP data. In the choropleth,
+            the United States and China appear with the strongest
+            colors, followed by economies such as Germany, Japan,
+            and India. However, the geographic area of each country
+            remains unchanged. This preserves recognizable country
+            shapes, locations, and regional relationships, making
+            the choropleth useful for identifying geographic
+            patterns and seeing where high or low GDP values occur.
+        </p>
+
+        <p>
+            The Dorling cartogram changes this emphasis by
+            representing each economy with a circle whose area is
+            proportional to GDP. The United States and China become
+            visually dominant, while smaller economies occupy much
+            less space. This makes differences in economic magnitude
+            easier to compare because area directly represents GDP.
+            However, exact country shape, boundary, and adjacency
+            are lost, and positions may shift slightly to reduce
+            overlap. The cartogram therefore better supports
+            comparisons of economic size, while the choropleth
+            better supports geographic interpretation. Changing
+            from color encoding to area encoding makes differences
+            in global economic size more visually prominent, but
+            at the cost of geographic fidelity.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- HOME -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <a
+            href="../index.html"
+            class="back-home"
+        >
+            ← Back to home
+        </a>
+
+    </section>
+
+</main>
+
+
+<div
+    id="tooltip"
+    class="tooltip"
+></div>
+
+
+<script src="js/main.js"></script>
 
 </body>
 
