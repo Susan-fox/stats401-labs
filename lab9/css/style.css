@@ -1,0 +1,441 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f6f8;
+
+    color: #222;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+header {
+    background: #1f2937;
+
+    color: white;
+
+    padding: 28px 48px;
+}
+
+
+header h1 {
+    margin: 0 0 8px 0;
+}
+
+
+header p {
+    margin: 0;
+
+    opacity: 0.88;
+}
+
+
+/* =================================
+   MAIN
+================================= */
+
+main {
+    max-width: 1450px;
+
+    margin: 28px auto;
+
+    padding: 0 20px 50px;
+}
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.lab-nav {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 24px;
+}
+
+
+.lab-nav a {
+    text-decoration: none;
+
+    color: #333;
+
+    background: white;
+
+    border: 1px solid #d7dce1;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+}
+
+
+.lab-nav a:hover {
+    background: #eef1f4;
+}
+
+
+.lab-nav a.active {
+    background: #1f2937;
+
+    color: white;
+
+    border-color: #1f2937;
+}
+
+
+/* =================================
+   CARDS
+================================= */
+
+.card {
+    background: white;
+
+    padding: 28px;
+
+    margin-bottom: 26px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.07);
+}
+
+
+.card h2 {
+    margin-top: 0;
+}
+
+
+.card p {
+    line-height: 1.6;
+}
+
+
+.page-intro h1 {
+    margin-top: 0;
+
+    margin-bottom: 8px;
+}
+
+
+/* =================================
+   DATASET
+================================= */
+
+.dataset-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.stat-card {
+    background: #f7f8fa;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    padding: 18px;
+}
+
+
+.stat-number {
+    font-size: 25px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+
+.stat-label {
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+/* =================================
+   SECTION HEADING
+================================= */
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+
+/* =================================
+   BUTTON
+================================= */
+
+.button {
+    border: 0;
+
+    background: #1f2937;
+
+    color: white;
+
+    padding: 9px 15px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+
+.button:hover {
+    background: #374151;
+}
+
+
+/* =================================
+   ENCODING
+================================= */
+
+.encoding-box {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin: 17px 0;
+}
+
+
+.encoding-box span {
+    background: #eef2f7;
+
+    color: #374151;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+
+/* =================================
+   MAPS
+================================= */
+
+.map-wrapper {
+    width: 100%;
+
+    background: #f8fafc;
+
+    border: 1px solid #dfe3e8;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+#choropleth-map,
+#cartogram-map {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+}
+
+
+/* Important:
+   no CSS transitions on paths/circles.
+   This keeps hover/click lightweight.
+*/
+
+.country {
+    cursor: pointer;
+}
+
+
+.cartogram-circle {
+    cursor: pointer;
+}
+
+
+/* =================================
+   LEGEND
+================================= */
+
+.legend-area {
+    margin-top: 16px;
+}
+
+
+.legend-title {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 3px;
+}
+
+
+/* =================================
+   CARTOGRAM NOTE
+================================= */
+
+.cartogram-note {
+    margin: 15px 0;
+
+    padding: 13px 16px;
+
+    background: #fff7ed;
+
+    border-left: 4px solid #f59e0b;
+
+    line-height: 1.5;
+}
+
+
+/* =================================
+   NOTES
+================================= */
+
+.note {
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =================================
+   SELECTION
+================================= */
+
+#selection-panel {
+    display: inline-flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    padding: 12px 16px;
+
+    background: #f7f8fa;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+}
+
+
+.selection-label {
+    color: #666;
+}
+
+
+#selected-country {
+    font-weight: 700;
+}
+
+
+/* =================================
+   TOOLTIP
+================================= */
+
+.tooltip {
+    position: fixed;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        rgba(17, 24, 39, 0.94);
+
+    color: white;
+
+    padding: 9px 11px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    max-width: 260px;
+
+    z-index: 9999;
+}
+
+
+/* =================================
+   HOME
+================================= */
+
+.back-home {
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (
+    max-width: 850px
+) {
+
+    header {
+        padding: 22px;
+    }
+
+
+    main {
+        padding:
+            0 12px 40px;
+    }
+
+
+    .card {
+        padding: 20px;
+    }
+
+
+    .section-heading {
+        flex-direction: column;
+    }
+
+}
