@@ -1,23 +1,528 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Lab 10</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lab 10 - Novel Interaction with Visualization
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 
 <body>
 
-    <h1>Lab 10</h1>
+<header>
+
+    <h1>
+        STATS 401
+    </h1>
 
     <p>
-        Lab 10 will be added here.
+        Data Acquisition and Visualization
     </p>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+</header>
+
+
+<main>
+
+    <!-- ================================= -->
+    <!-- NAVIGATION -->
+    <!-- ================================= -->
+
+    <nav class="lab-nav">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../lab1/">
+            Lab 1
+        </a>
+
+        <a href="../lab2/">
+            Lab 2
+        </a>
+
+        <a href="../lab3/">
+            Lab 3
+        </a>
+
+        <a href="../lab4/">
+            Lab 4
+        </a>
+
+        <a href="../lab5/">
+            Lab 5
+        </a>
+
+        <a href="../lab6/">
+            Lab 6
+        </a>
+
+        <a href="../lab7/">
+            Lab 7
+        </a>
+
+        <a href="../lab8/">
+            Lab 8
+        </a>
+
+        <a href="../lab9/">
+            Lab 9
+        </a>
+
+        <a
+            href="../lab10/"
+            class="active"
+        >
+            Lab 10
+        </a>
+
+    </nav>
+
+
+    <!-- ================================= -->
+    <!-- INTRO -->
+    <!-- ================================= -->
+
+    <section class="card page-intro">
+
+        <h1>
+            Lab 10: Voice Interaction with a GDP Visualization
+        </h1>
+
+        <p>
+            Extending the Lab 9 geospatial visualization with
+            browser-based voice commands for country selection
+            and reset.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- VOICE CONTROL -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            1. Voice Interaction
+        </h2>
+
+        <p>
+            Voice commands provide an alternative way to select
+            countries without locating and clicking them directly
+            on the map.
+        </p>
+
+
+        <div class="voice-layout">
+
+            <div class="voice-controls">
+
+                <button
+                    id="voice-button"
+                    class="button voice-button"
+                >
+                    Start Voice Control
+                </button>
+
+
+                <button
+                    id="reset-selection"
+                    class="button secondary-button"
+                >
+                    Reset Selection
+                </button>
+
+            </div>
+
+
+            <div class="voice-feedback">
+
+                <div class="feedback-row">
+
+                    <span class="feedback-label">
+                        Voice Status:
+                    </span>
+
+                    <span id="voice-status">
+                        Voice control inactive
+                    </span>
+
+                </div>
+
+
+                <div class="feedback-row">
+
+                    <span class="feedback-label">
+                        Heard:
+                    </span>
+
+                    <span id="heard-command">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="feedback-row">
+
+                    <span class="feedback-label">
+                        Action:
+                    </span>
+
+                    <span id="voice-action">
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="command-help">
+
+            <h3>
+                Try saying:
+            </h3>
+
+            <div class="command-list">
+
+                <code>
+                    Highlight China
+                </code>
+
+                <code>
+                    Highlight Japan
+                </code>
+
+                <code>
+                    Highlight United States
+                </code>
+
+                <code>
+                    Highlight Germany
+                </code>
+
+                <code>
+                    Reset
+                </code>
+
+            </div>
+
+        </div>
+
+
+        <p class="privacy-note">
+            The microphone is activated only after pressing
+            <strong>Start Voice Control</strong>. If speech
+            recognition is unavailable or fails, the visualization
+            remains fully usable with mouse controls.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- DATASET -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            2. Dataset
+        </h2>
+
+        <p>
+            This visualization reuses the Lab 9 dataset of the
+            50 largest economies by 2025 nominal GDP.
+        </p>
+
+
+        <div class="dataset-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    50
+                </div>
+
+                <div class="stat-label">
+                    Economies
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    2025
+                </div>
+
+                <div class="stat-label">
+                    GDP Year
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    Voice
+                </div>
+
+                <div class="stat-label">
+                    Novel Modality
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number">
+                    Mouse
+                </div>
+
+                <div class="stat-label">
+                    Fallback Control
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- CHOROPLETH -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    3. 2025 GDP Choropleth
+                </h2>
+
+                <p>
+                    Use voice or mouse interaction to select
+                    an economy.
+                </p>
+
+            </div>
+
+
+            <button
+                id="reset-choropleth"
+                class="button secondary-button"
+            >
+                Reset Zoom
+            </button>
+
+        </div>
+
+
+        <div class="encoding-box">
+
+            <span>
+                Position → Geographic Location
+            </span>
+
+            <span>
+                Shape → Country Boundary
+            </span>
+
+            <span>
+                Color → GDP
+            </span>
+
+        </div>
+
+
+        <div class="map-wrapper">
+
+            <svg
+                id="choropleth-map"
+                viewBox="0 0 1100 620"
+                preserveAspectRatio="xMidYMid meet"
+            ></svg>
+
+        </div>
+
+
+        <div class="legend-area">
+
+            <div class="legend-title">
+                2025 Nominal GDP
+                (billion USD, logarithmic scale)
+            </div>
+
+            <svg
+                id="color-legend"
+                width="620"
+                height="70"
+            ></svg>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- CARTOGRAM -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            4. GDP Dorling Cartogram
+        </h2>
+
+        <p>
+            Circle area represents GDP. A country selected
+            by voice is highlighted here and in the choropleth.
+        </p>
+
+
+        <div class="encoding-box">
+
+            <span>
+                Position → Approximate Geography
+            </span>
+
+            <span>
+                Circle Area → GDP
+            </span>
+
+            <span>
+                Color → GDP
+            </span>
+
+        </div>
+
+
+        <div class="map-wrapper">
+
+            <svg
+                id="cartogram-map"
+                viewBox="0 0 1100 620"
+                preserveAspectRatio="xMidYMid meet"
+            ></svg>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- CURRENT SELECTION -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            Current Selection
+        </h2>
+
+        <div id="selection-panel">
+
+            <span class="selection-label">
+                Selected country:
+            </span>
+
+            <span id="selected-country">
+                None
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- REFLECTION -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <h2>
+            5. Design Reflection
+        </h2>
+
+        <p>
+            I extended my Lab 9 GDP choropleth and Dorling
+            cartogram by adding voice interaction through the
+            browser Speech Recognition API. Users can say commands
+            such as “Highlight China,” “Highlight Japan,” or
+            “Reset.” The interaction supports country selection,
+            which can be difficult when a country is geographically
+            small or when users are viewing the visualization from
+            a distance. Voice is appropriate because the country
+            name naturally specifies the target while the system
+            immediately highlights the same economy in both views.
+            The interface also displays what the system heard and
+            what action was performed, so recognition errors are
+            visible. Speech recognition can fail because of browser
+            compatibility, pronunciation, accents, microphone
+            quality, or background noise. Therefore, microphone
+            access begins only after explicit user action, and
+            conventional mouse clicking and reset buttons remain
+            available as fallback controls.
+        </p>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- HOME -->
+    <!-- ================================= -->
+
+    <section class="card">
+
+        <a
+            href="../index.html"
+            class="back-home"
+        >
+            ← Back to home
+        </a>
+
+    </section>
+
+</main>
+
+
+<div
+    id="tooltip"
+    class="tooltip"
+></div>
+
+
+<script src="js/main.js"></script>
 
 </body>
 
